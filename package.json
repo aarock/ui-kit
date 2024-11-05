@@ -1,0 +1,35 @@
+{
+  "name": "@aarock/ui-kit",
+  "version": "1.0.0",
+  "author": "Aaron Gale",
+  "license": "ISC",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
+  "module:jsx": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@aarock/ui-core": "*",
+    "dayjs": "^1",
+    "react-colorful": "^5.6.1",
+    "reanimated-color-picker": "^3.0.3"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "react-native": "*"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.2.2"
+  }
+}
