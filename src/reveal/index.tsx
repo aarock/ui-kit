@@ -13,7 +13,7 @@ export function Reveal ( {
 }: RevealProps ) {
 
     const isOpen = isValidElement( children )
-    const childRef = useRef( children )
+    const childRef = useRef( children || null )
 
     const [ ref, { height = 0 } ] = useMeasure()
     const heightValue = useSpringValue( height )

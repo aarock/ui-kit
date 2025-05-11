@@ -22,7 +22,7 @@
     "@aarock/ui-core": "*",
     "dayjs": "^1",
     "react-colorful": "^5.6.1",
-    "reanimated-color-picker": "^3.0.3"
+    "reanimated-color-picker": "^4.0.1"
   },
   "peerDependencies": {
     "react": "*",
