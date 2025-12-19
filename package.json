@@ -2,6 +2,7 @@
   "name": "@aarock/ui-kit",
   "version": "1.0.3",
   "author": "Aaron Gale",
+  "repository": "https://github.com/aarock/ui-kit",
   "license": "ISC",
   "type": "module",
   "main": "./dist/index.js",
@@ -21,13 +22,14 @@
   "dependencies": {
     "dayjs": "^1",
     "react-colorful": "^5",
+    "react-window": "^2.2.3",
     "reanimated-color-picker": "^4"
   },
   "peerDependencies": {
+    "@aarock/ui-core": "*",
     "react": "*",
     "react-dom": "*",
-    "react-native": "*",
-    "@aarock/ui-core": "*"
+    "react-native": "*"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.2.2"
