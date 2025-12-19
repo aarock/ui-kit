@@ -23,8 +23,8 @@ export function Switch ( {
     const width = Math.max( wl, wr ) + BUTTON_WIDTH
 
     return <XStack
-        p="$sm"
         gap="$md"
+        padding="$sm"
         cursor="pointer"
         opacity={ maxLabelWidth ? 1 : 0 }
         borderRadius={ 100 }
@@ -44,12 +44,12 @@ export function Switch ( {
         >
 
             <XStack position="absolute" top={ 0 } bottom={ 0 } left={ 0 } minWidth={ maxLabelWidth } alignItems="center" justifyContent="center">
-                <Button.Label ref={ refL } fontWeight="bold" px="$sm" color="$primary1" animation="fast" animateOnly={ [ "opacity" ] } size="$sm" opacity={ value ? 1 : 0 } children={ onLabel } />
+                <Button.Label ref={ refL } fontWeight="bold" paddingHorizontal="$sm" color="$primary1" animation="fast" animateOnly={ [ "opacity" ] } size="$sm" opacity={ value ? 1 : 0 } children={ onLabel } />
             </XStack>
 
 
             <XStack position="absolute" top={ 0 } bottom={ 0 } right={ 0 } minWidth={ maxLabelWidth } alignItems="center" justifyContent="center">
-                <Button.Label ref={ refR } fontWeight="normal" px="$sm" color="$neutral11" animation="fast" animateOnly={ [ "opacity" ] } size="$sm" opacity={ !value ? 1 : 0 } children={ offLabel } />
+                <Button.Label ref={ refR } fontWeight="normal" paddingHorizontal="$sm" color="$neutral11" animation="fast" animateOnly={ [ "opacity" ] } size="$sm" opacity={ !value ? 1 : 0 } children={ offLabel } />
             </XStack>
 
             <Button

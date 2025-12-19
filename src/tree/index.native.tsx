@@ -1,6 +1,6 @@
 import { XStack } from "@aarock/ui-core"
-import { VirtualizedList } from "react-native"
 import { ReactNode, useCallback, useEffect, useRef, useState } from "react"
+import { VirtualizedList } from "react-native"
 
 export const ROOT_KEY = "__ROOT__"
 

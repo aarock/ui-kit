@@ -34,11 +34,11 @@ export function ToastProvider ( { children, ...rest }: YStackProps ) {
         setToasts( [ ...toastRef.current ] )
     }, [] )
 
-    return <ToastContext.Provider value={ toast } >
+    return <ToastContext.Provider value={ toast }>
         { children }
-        <Portal>
+        <Portal zIndex={ 1000 }>
             <YStack
-                p="$lg"
+                padding="$lg"
                 position="absolute"
                 pointerEvents="auto"
                 alignItems="flex-end"
@@ -65,11 +65,12 @@ function Toast ( { toast, order, onDismiss, ...rest }: ToastProps ) {
     const [ stopwatch, setStopwatch ] = useState(0)
 
     useEffect( () => {
-        const tid = setTimeout( () => onDismiss( toast ), (toast.duration || 10) * 1_000 )
+        const tid = setTimeout( () => onDismiss( toast ), ( toast.duration || 10 ) * 1_000 )
         return () => { clearTimeout( tid ) }
     }, [ stopwatch ] )
 
-    return <XStack
+    return <XStack 
+        id={ toast.key }
         key={ toast.key }
         zIndex={ order }
         position="relative"
@@ -79,74 +80,72 @@ function Toast ( { toast, order, onDismiss, ...rest }: ToastProps ) {
         animation="slow"
         { ...rest }
     >
-        <Box>
-            <Box ref={ ref }>
-                <YStack
-                    p="$sm"
-                    mb="$sm"
-                    mr="$sm"
-                    gap="$sm"
-                    bg="$neutral1"
-                    borderWidth={ 1 }
-                    borderRadius="$md"
-                    borderColor="$neutral6"
-                    shadowRadius="$lg"
-                    shadowColor="$shadow3"
-                    minWidth={ 300 }
-                    maxWidth={ 340 }
-                >
+        <Box ref={ ref }>
+            <YStack
+                padding="$sm"
+                marginBottom="$sm"
+                marginRight="$sm"
+                gap="$sm"
+                background="$neutral1"
+                borderWidth={ 1 }
+                borderRadius="$md"
+                borderColor="$neutral6"
+                shadowRadius="$lg"
+                shadowColor="$shadow3"
+                minWidth={ 300 }
+                maxWidth={ 340 }
+            >
 
-                    <XStack p="$sm" gap="$lg">
+                <XStack padding="$sm" gap="$lg">
 
-                        <XStack gap="$lg" alignItems="center" flexGrow={ 1 } flexShrink={ 1 }>
+                    <XStack gap="$lg" alignItems="center" flexGrow={ 1 } flexShrink={ 1 }>
 
-                            { toast.icon && <Button.Icon name={ toast.icon } color={ toast.color } /> }
+                        { toast.icon && <Button.Icon name={ toast.icon } color={ toast.color } /> }
 
-                            <YStack flexShrink={ 1 } flexGrow={ 1 }>
+                        <YStack flexShrink={ 1 } flexGrow={ 1 }>
 
-                                { !!toast.label && <Text
-                                    fontSize={ 14 }
-                                    fontWeight="bold"
-                                    overflow="hidden"
-                                    whiteSpace="nowrap"
-                                    textOverflow="ellipsis"
-                                >{ toast.label }</Text> }
+                            { !!toast.label && <Text
+                                fontSize={ 14 }
+                                fontWeight="bold"
+                                overflow="hidden"
+                                whiteSpace="nowrap"
+                                textOverflow="ellipsis"
+                            >{ toast.label }</Text> }
 
-                                { !!toast.message && <Text fontSize={ 14 }>{ toast.message }</Text> }
+                            { !!toast.message && <Text fontSize={ 14 }>{ toast.message }</Text> }
 
-                            </YStack>
-
-                        </XStack>
-
-                        <XStack alignItems="center" flexDirection="row-reverse">
-                            { toast.adornments || <>
-                              <Button size="$sm" variant="subtle" onPress={ () => onDismiss?.( toast ) }>
-                                <Button.Icon name="cross" />
-                              </Button>
-                              { !!toast.onUndo && !isUndone && <Button size="$sm" variant="subtle" onPress={ () => {
-                                toast.onUndo?.()
-                                setUndone(true)
-                                setStopwatch( new Date().getTime() )
-                              } }>
-                                <Button.Icon name="undo" />
-                                <Button.Label children="Undo" />
-                              </Button> }
-                                { !!toast.onRedo && isUndone && <Button size="$sm" variant="subtle" onPress={ () => {
-                                  toast.onRedo?.()
-                                  setUndone(false)
-                                  setStopwatch( new Date().getTime() )
-                                } }>
-                                <Button.Icon name="redo" />
-                                <Button.Label children="Redo" />
-                              </Button> }
-                            </>}
-                        </XStack>
-
+                        </YStack>
 
                     </XStack>
 
-                </YStack>
-            </Box>
+                    <XStack alignItems="center" flexDirection="row-reverse">
+                        { toast.adornments || <>
+                            <Button size="$sm" variant="subtle" onPress={ () => onDismiss?.( toast ) }>
+                            <Button.Icon name="cross" />
+                            </Button>
+                            { !!toast.onUndo && !isUndone && <Button size="$sm" variant="subtle" onPress={ () => {
+                            toast.onUndo?.()
+                            setUndone(true)
+                            setStopwatch( new Date().getTime() )
+                            } }>
+                            <Button.Icon name="undo" />
+                            <Button.Label children="Undo" />
+                            </Button> }
+                            { !!toast.onRedo && isUndone && <Button size="$sm" variant="subtle" onPress={ () => {
+                                toast.onRedo?.()
+                                setUndone(false)
+                                setStopwatch( new Date().getTime() )
+                            } }>
+                            <Button.Icon name="redo" />
+                            <Button.Label children="Redo" />
+                            </Button> }
+                        </>}
+                    </XStack>
+
+
+                </XStack>
+
+            </YStack>
         </Box>
     </XStack>
 

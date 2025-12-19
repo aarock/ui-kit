@@ -1,6 +1,6 @@
-import { XStack } from "@aarock/ui-core"
 import { ReactNode, useCallback, useEffect, useRef, useState, type ElementType } from "react"
-import { VariableSizeList as VirtualizedList } from 'react-window'
+import { List as VirtualizedList } from 'react-window'
+import { XStack } from "@aarock/ui-core"
 
 export const ROOT_KEY = "__ROOT__"
 
@@ -301,17 +301,19 @@ export function Tree<B = any, L = B> ( {
     }
 
     return <VirtualizedList
-        width={ 200 }
-        height={ 1000 }
+        // width={ 200 }
+        // height={ 1000 }
         // data={ flattened }
         // itemContent={ ( index ) => flattened[ index ] }
         // keyExtractor={ ( { leaf, group }, i ) => accessLeafKey( leaf ) || accessBranchKey( group ) || `${ i }` }
-        itemCount={ flattened.length }
-        itemSize={ index => 50 }
-        children={ Row }
-        onItemsRendered={ ( { overscanStartIndex, overscanStopIndex } ) => {
+        rowCount={ flattened.length }
+        rowProps={ index => ({}) }
+        rowHeight={ index => 50 }
+        rowComponent={ Row }
+        // onRowsRendered={ ( { startIndex, stopIndex } ) => {
+        onRowsRendered={ ( { startIndex, stopIndex } ) => {
 
-            const viewableNodes = flattened.slice( overscanStartIndex, overscanStopIndex )
+            const viewableNodes = flattened.slice( startIndex, stopIndex )
 
             const lastEntryParentKeys = viewableNodes
                 .filter( ( { isLast } ) => isLast )
