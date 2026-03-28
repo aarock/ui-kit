@@ -1,7 +1,7 @@
 import { useRef, useLayoutEffect, useEffect, isValidElement, type CSSProperties } from "react"
-import { Stack, type GetProps, Spring, useSpringValue, useTransition, easings, useMeasure, type SpringConfig } from "@aarock/ui-core"
+import { Box, type BoxProps, Spring, useSpringValue, useTransition, easings, useMeasure, type SpringConfig } from "@aarock/ui-core"
 
-export type RevealProps = GetProps<typeof Stack> & {
+export type RevealProps = BoxProps & {
     config?: SpringConfig
 }
 
@@ -44,9 +44,9 @@ export function Reveal ( {
     }, [ children ] )
 
     return transition( ( springs, item ) => item && <Spring style={ { ...outerStyle, ...springs } }>
-        <Stack ref={ ref } style={ innerStyle } { ...rest }>
+        <Box ref={ ref } style={ innerStyle } { ...rest }>
             { childRef.current || children }
-        </Stack>
+        </Box>
     </Spring> )
 
 }
