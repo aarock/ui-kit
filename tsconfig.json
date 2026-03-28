@@ -7,6 +7,7 @@
     "typeRoots": [ "node_modules/@types" ],
     "strict": true,
     "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
@@ -15,7 +16,6 @@
     "declaration": true,
     "sourceMap": true,
     "jsx": "react-jsx",
-    "baseUrl": ".",
     "rootDir": "src",
     "outDir": "dist"
   },
