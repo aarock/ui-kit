@@ -1,8 +1,7 @@
-import { Stack, type StackProps } from "@tamagui/core"
 import { useRef, useLayoutEffect, useEffect, isValidElement, type CSSProperties } from "react"
-import { Spring, useSpringValue, useTransition, easings, useMeasure, type SpringConfig } from "@aarock/ui-core"
+import { Stack, type GetProps, Spring, useSpringValue, useTransition, easings, useMeasure, type SpringConfig } from "@aarock/ui-core"
 
-export type RevealProps = StackProps & {
+export type RevealProps = GetProps<typeof Stack> & {
     config?: SpringConfig
 }
 
